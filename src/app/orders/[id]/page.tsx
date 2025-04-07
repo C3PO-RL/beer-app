@@ -4,11 +4,13 @@ import Link from "next/link";
 import { getOrderById } from "../../actions/order-actions";
 import { notFound } from "next/navigation";
 
-export default async function OrderDetails({
-  params,
-}: {
-  params: { id: string };
-}) {
+interface OrderDetailsPageProps {
+  params: Promise<{
+    id: string;
+  }>;
+}
+
+export default async function OrderDetails({ params }: OrderDetailsPageProps) {
   const { id } = await params;
   const order = await getOrderById(id);
 

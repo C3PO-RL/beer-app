@@ -8,7 +8,6 @@ import { cookies } from "next/headers";
  * Fetches beer stock
  */
 export async function getBeerStock(): Promise<Stock> {
-  // Mock stock data
   const mockStock: Stock = {
     last_updated: new Date().toISOString(),
     beers: [
@@ -33,7 +32,6 @@ export async function getBeerStock(): Promise<Stock> {
     ],
   };
 
-  // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 500));
 
   return mockStock;
@@ -46,14 +44,11 @@ export async function updateBeerQuantity(
   beerName: string,
   newQuantity: number
 ): Promise<void> {
-  // In a real app, this would update the database
   console.log(`Updating ${beerName} stock to ${newQuantity}`);
 
-  // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 500));
 }
 
-// Cookie name for storing the current order
 const CURRENT_ORDER_COOKIE = "current_order";
 
 /**

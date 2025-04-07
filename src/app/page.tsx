@@ -4,7 +4,6 @@ import { getBeerStock, getCurrentOrder } from "./actions/beer-actions";
 import BeerList from "./_components/BeerList";
 
 export default async function Home() {
-  // Fetch data using server actions
   const [stock, currentOrder] = await Promise.all([
     getBeerStock(),
     getCurrentOrder(),

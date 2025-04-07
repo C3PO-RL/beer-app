@@ -16,7 +16,6 @@ import type { Order } from "@/types/order";
 import type { Customer } from "@/types/customer";
 import type { Beer } from "@/types/beer";
 
-// Cookie name for storing the current order
 const CURRENT_ORDER_COOKIE = "current_order";
 
 /**
@@ -59,7 +58,7 @@ export async function saveCurrentOrder(order: Order): Promise<void> {
     name: CURRENT_ORDER_COOKIE,
     value: JSON.stringify(order),
     path: "/",
-    maxAge: 60 * 60 * 24 * 7, // 1 week
+    maxAge: 60 * 60 * 24 * 7,
     httpOnly: true,
   });
 }
@@ -78,14 +77,12 @@ export async function addToOrder(beer: Beer, quantity: number): Promise<Order> {
     rounds: [],
   };
 
-  // Check if the item is already in the order
   const existingItemIndex = currentOrder.items.findIndex(
     (item) => item.name === beer.name
   );
   const updatedItems = [...currentOrder.items];
 
   if (existingItemIndex >= 0) {
-    // Update existing item
     const existingItem = updatedItems[existingItemIndex];
     const updatedItem = {
       ...existingItem,
@@ -94,7 +91,6 @@ export async function addToOrder(beer: Beer, quantity: number): Promise<Order> {
     };
     updatedItems[existingItemIndex] = updatedItem;
   } else {
-    // Add new item
     updatedItems.push({
       name: beer.name,
       price_per_unit: beer.price,
@@ -104,7 +100,6 @@ export async function addToOrder(beer: Beer, quantity: number): Promise<Order> {
     });
   }
 
-  // Create a new round
   const newRound = {
     created: new Date().toISOString(),
     items: [
@@ -115,9 +110,8 @@ export async function addToOrder(beer: Beer, quantity: number): Promise<Order> {
     ],
   };
 
-  // Calculate totals
   const subtotal = updatedItems.reduce((total, item) => total + item.total, 0);
-  const taxes = subtotal * 0.1; // 10% tax
+  const taxes = subtotal * 0.1;
 
   const updatedOrder = {
     ...currentOrder,
@@ -128,7 +122,6 @@ export async function addToOrder(beer: Beer, quantity: number): Promise<Order> {
     discounts: 0,
   };
 
-  // Save the updated order
   await saveCurrentOrder(updatedOrder);
   return updatedOrder;
 }
@@ -143,22 +136,18 @@ export async function removeFromOrder(itemName: string): Promise<Order | null> {
     return null;
   }
 
-  // Filter out the item to remove
   const updatedItems = currentOrder.items.filter(
     (item) => item.name !== itemName
   );
 
-  // If no items left, clear the order
   if (updatedItems.length === 0) {
     await clearCurrentOrder();
     return null;
   }
 
-  // Calculate new totals
   const subtotal = updatedItems.reduce((total, item) => total + item.total, 0);
-  const taxes = subtotal * 0.1; // 10% tax
+  const taxes = subtotal * 0.1;
 
-  // Update the order
   const updatedOrder = {
     ...currentOrder,
     items: updatedItems,
@@ -167,7 +156,6 @@ export async function removeFromOrder(itemName: string): Promise<Order | null> {
     discounts: 0,
   };
 
-  // Save the updated order
   await saveCurrentOrder(updatedOrder);
   return updatedOrder;
 }
@@ -203,7 +191,6 @@ export async function saveOrder(
   try {
     const docRef = await addDoc(collection(db, "orders"), orderToSave);
 
-    // Clear the current order after saving
     await clearCurrentOrder();
 
     return docRef.id;
