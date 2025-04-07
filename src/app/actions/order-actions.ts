@@ -15,6 +15,7 @@ import { db } from "@/lib/firebase";
 import type { Order } from "@/types/order";
 import type { Customer } from "@/types/customer";
 import type { Beer } from "@/types/beer";
+import { revalidatePath } from "next/cache";
 
 const CURRENT_ORDER_COOKIE = "current_order";
 
@@ -192,7 +193,7 @@ export async function saveOrder(
     const docRef = await addDoc(collection(db, "orders"), orderToSave);
 
     await clearCurrentOrder();
-
+    revalidatePath("/orders");
     return docRef.id;
   } catch (error) {
     console.error("Error saving order:", error);
