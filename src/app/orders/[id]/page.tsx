@@ -9,7 +9,8 @@ export default async function OrderDetails({
 }: {
   params: { id: string };
 }) {
-  const order = await getOrderById(params.id);
+  const { id } = await params;
+  const order = await getOrderById(id);
 
   if (!order) {
     notFound();
@@ -23,7 +24,7 @@ export default async function OrderDetails({
             <ArrowLeft size={24} />
           </Link>
           <div>
-            <h1 className="text-3xl font-bold">Order Details</h1>
+            <h1 className="text-3xl font-bold text-[#020202]">Order Details</h1>
             <p className="text-gray-500 mt-1">Order #{order.id?.slice(-6)}</p>
           </div>
         </div>

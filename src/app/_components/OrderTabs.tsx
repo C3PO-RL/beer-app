@@ -22,16 +22,20 @@ export default function OrderTabs({
     <>
       <div className="flex border-b">
         <button
-          className={`flex-1 py-4 text-center font-medium ${
-            activeTab === "inProgress" ? "tab-active" : "tab-inactive"
+          className={`flex-1 py-4 text-center font-medium cursor-pointer ${
+            activeTab === "inProgress"
+              ? "tab-active text-[#020202]"
+              : "tab-inactive"
           }`}
           onClick={() => setActiveTab("inProgress")}
         >
           In Progress
         </button>
         <button
-          className={`flex-1 py-4 text-center font-medium ${
-            activeTab === "pastOrders" ? "tab-active" : "tab-inactive"
+          className={`flex-1 py-4 text-center font-medium cursor-pointer ${
+            activeTab === "pastOrders"
+              ? "tab-active text-[#020202]"
+              : "tab-inactive"
           }`}
           onClick={() => setActiveTab("pastOrders")}
         >
