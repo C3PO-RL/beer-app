@@ -59,7 +59,7 @@ export default async function CheckoutPage() {
         <form action={processCheckout}>
           <button
             type="submit"
-            className="w-full py-4 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-colors animate-fade-in"
+            className="w-full py-4 bg-red-600 text-white font-bold rounded-lg hover:bg-red-700 transition-colors animate-fade-in cursor-pointer"
           >
             Checkout Now
           </button>

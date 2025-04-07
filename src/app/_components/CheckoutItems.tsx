@@ -21,10 +21,8 @@ export default function CheckoutItems({ items }: CheckoutItemsProps) {
       const updatedOrder = await removeFromOrder(itemName);
 
       if (!updatedOrder) {
-        
         router.push("/");
       } else {
-       
         router.refresh();
       }
     } catch (error) {
@@ -68,7 +66,7 @@ export default function CheckoutItems({ items }: CheckoutItemsProps) {
           <button
             onClick={() => handleRemoveItem(item.name)}
             disabled={removingItem === item.name}
-            className="p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors disabled:opacity-50"
+            className="p-2 text-red-600 hover:bg-red-50 rounded-full transition-colors disabled:opacity-50 cursor-pointer"
             aria-label={`Remove ${item.name} from order`}
           >
             <Trash2 size={20} />

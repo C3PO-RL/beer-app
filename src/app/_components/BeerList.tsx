@@ -28,7 +28,7 @@ export default function BeerList({ beers }: BeerListProps): JSX.Element {
         <div className="animate-fade-in">
           <button
             onClick={handleCloseDetails}
-            className="mb-4 flex items-center text-gray-500"
+            className="mb-4 flex items-center text-gray-500 cursor-pointer"
           >
             ← Back to all beers
           </button>

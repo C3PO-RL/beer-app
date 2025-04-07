@@ -77,7 +77,7 @@ export default function BeerCard({ beer }: BeerCardProps): JSX.Element {
         </div>
         <div className="flex items-center justify-end mt-6">
           <button
-            className="w-10 h-10 flex items-center justify-center rounded-md border border-gray-300"
+            className="w-10 h-10 flex items-center justify-center rounded-md border border-gray-300 cursor-pointer"
             onClick={handleDecrement}
             disabled={isSubmitting}
           >
@@ -85,7 +85,7 @@ export default function BeerCard({ beer }: BeerCardProps): JSX.Element {
           </button>
           <span className="mx-4 text-xl">{quantity}</span>
           <button
-            className="w-10 h-10 flex items-center justify-center rounded-md border border-gray-300"
+            className="w-10 h-10 flex items-center justify-center rounded-md border border-gray-300 cursor-pointer"
             onClick={handleIncrement}
             disabled={isSubmitting}
           >
@@ -98,7 +98,7 @@ export default function BeerCard({ beer }: BeerCardProps): JSX.Element {
             <p className="text-xl text-[#020202]">${beer.price.toFixed(2)}</p>
           </div>
           <button
-            className="w-1/2 py-3 mt-4 bg-red-600 text-white font-bold rounded-md hover:bg-red-700 transition-colors disabled:bg-red-400"
+            className="w-1/2 py-3 mt-4 bg-red-600 text-white font-bold rounded-md hover:bg-red-700 transition-colors disabled:bg-red-400 cursor-pointer"
             onClick={handleAddToOrder}
             disabled={isSubmitting}
           >
