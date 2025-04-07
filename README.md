@@ -86,3 +86,7 @@ const firebaseConfig = {
   appId: "YOUR_APP_ID",
 };
 ```
+
+## App is deployed here
+
+`https://beer-nmglv1gck-c3porls-projects.vercel.app/`
